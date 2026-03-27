@@ -23,7 +23,7 @@ jobs:
         run: dotnet workload install wasm-tools
 
       - name: Publish
-        run: dotnet publish THT203.csproj.lnk -c:Release -o:publish -p:GHPages=true
+        run: dotnet publish blazorSolution/THT203/THT203.csproj -c:Release -o:publish -p:GHPages=true
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
