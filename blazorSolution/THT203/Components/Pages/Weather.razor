@@ -1,0 +1,135 @@
+﻿@page "/weather"
+@rendermode InteractiveServer
+@using System.Text.Json.Serialization
+@using System.Net.Http.Json
+@inject IHttpClientFactory ClientFactory
+
+<PageTitle>Sää</PageTitle>
+
+<h1>Sää</h1>
+
+<div class="mb-3">      
+    <label>Valitse mistä haluat katsoa sään:</label>    
+    <select @onchange="Sijaintivaihto" class="form-select" style="max-width:320px">
+        @foreach (var sijainti in saaPresets)       
+        {
+            <option value="@sijainti.Nimi">@sijainti.Nimi</option>
+        }
+    </select>
+</div>
+
+
+@if (saa != null)
+{
+    <h3>Nykyinen sää</h3>
+    <p>Lämpötila: @saa.CurrentWeather?.Temperature °C</p>
+    <p>Tuulen nopeus: @saa.CurrentWeather?.WindSpeed m/s</p>
+
+    <h3>Kolmen päivän ennuste</h3>
+    <table class="table table-striped" style="max-width:600px">
+        <thead>
+            <tr><th>Päivä</th><th>Min (°C)</th><th>Max (°C)</th></tr>
+        </thead>
+        <tbody>
+        @if (saa.Daily?.Time != null)
+        {
+            for (int i = 0; i < saa.Daily.Time.Count; i++)
+            {
+                <tr>
+                        @if (i == 0)
+                        {
+                            <td>Today</td>
+                        }
+                        else
+                        {
+                            <td>@DateTime.Parse(saa.Daily.Time[i]).DayOfWeek</td>
+                        }
+                    <td>@(i < saa.Daily.Min.Count ? saa.Daily.Min[i].ToString() : "-")</td>
+                    <td>@(i < saa.Daily.Max.Count ? saa.Daily.Max[i].ToString() : "-")</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    record Preset(string Nimi, string Lat, string Lon);
+
+    Saa? saa;
+    string latitude = "62.242";
+    string longitude = "25.749";
+
+    List<Preset> saaPresets = new()
+    {
+        new Preset("Jyväskylä", "62.242", "25.749"),  // Ajattelin että näyttää vain huomattavasti fiksummalta kuin että sinulla olisi kaksi laatikkoa joihin laitat omat koordinaatit.
+        new Preset("Tampere", "61.498", "23.761"),
+        new Preset("Helsinki", "60.167", "24.944"),   // ja kaikki näistä on haettu google AI searchin kautta niin en tiedä miten tarkkoja nämä oikeasti on
+    };
+        
+    protected override async Task OnInitializedAsync()
+    {
+        await SaaHaku();
+    }
+
+    void Sijaintivaihto(ChangeEventArgs e)
+    {
+        var nimi = e?.Value?.ToString();
+        var p = saaPresets.FirstOrDefault(x => x.Nimi == nimi);
+        if (p != null)
+        {
+            latitude = p.Lat;
+            longitude = p.Lon;
+            _ = SaaHaku();
+        }
+    }
+
+    async Task SaaHaku()
+    {
+        saa = null;
+        try
+        {
+            var client = ClientFactory.CreateClient();
+            string apiUrl = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=3";
+            var result = await client.GetFromJsonAsync<Saa>(apiUrl);
+            saa = result;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            StateHasChanged();
+        }
+    }
+    public class Saa
+    {
+        [JsonPropertyName("current_weather")]       
+        public Nyky? CurrentWeather { get; set; }
+
+        [JsonPropertyName("daily")]
+        public Paiva? Daily { get; set; }
+    }
+
+    public class Nyky
+    {
+        [JsonPropertyName("temperature")]
+        public double Temperature { get; set; }
+
+        [JsonPropertyName("windspeed")]
+        public double WindSpeed { get; set; }
+    }
+
+    public class Paiva
+    {
+        [JsonPropertyName("time")]
+        public List<string> Time { get; set; } = new();
+
+        [JsonPropertyName("temperature_2m_max")]
+        public List<double> Max { get; set; } = new();
+
+        [JsonPropertyName("temperature_2m_min")]
+        public List<double> Min { get; set; } = new();
+    }
+}

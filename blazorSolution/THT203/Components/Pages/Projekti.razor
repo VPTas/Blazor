@@ -1,0 +1,94 @@
+﻿@page "/"                    
+@rendermode InteractiveServer
+
+<h1>Pisteitä</h1>
+<p>
+    <button class="btn-main-click" Color="ButtonColor.Danger" @onclick="Klikattu">Click me</button>
+</p>
+<div id="Naytto">
+    <p role="status" class="counter" >Current count: @Math.Round(nykymaara, 0)</p>
+</div>
+
+<table class="ostettavat">
+    <thead>
+        <tr><th>Ostettavat:</th></tr>
+    </thead>
+    <tbody>
+        @foreach(Esine esine in Esineet)
+        {
+            <tr>
+                <td>@esine.Nimi</td>
+                <td>Maksaa: @Math.Round(esine.Arvo, 0) Pistettä</td>
+                <td><button class="btn-ostokset" value="Osta" @onclick="((args) => EsineOstettu(args, esine))">Osta</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button onclick="Crazymode">Älä paina jos näytönohjaimesi on sinulle tärkeä</button>
+
+@code {
+
+    public List<Esine> Esineet = new()
+    {
+        new Esine("Uusi hiiri", "paino", 10, 1),                
+        new Esine("Juoppolintu", "passive", 100, 0.003),        
+        new Esine("Rotta", "passive", 500, 0.03),
+        new Esine("Rannetuki", "paino", 550, 10),
+        new Esine("Naapurin kengät", "passive", 800, 2)
+    };
+
+    private double nykymaara = 0;
+    private double activeBoost = 1;
+    private double passiveBoost = 0;
+    private int paivitystaajuus = 150;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Thread thread = new Thread(PassiveIncome);
+        thread.IsBackground = true;
+        thread.Start(); 
+    }
+    private void Klikattu()
+    {
+        nykymaara += activeBoost;
+    }
+    private void EsineOstettu(EventArgs args, Esine ostettava)
+    {
+        if (Math.Round(nykymaara, 0) - Math.Round(ostettava.Arvo, 0) >= 0)
+        {
+            nykymaara -= ostettava.Arvo;
+
+            if (ostettava.Tyyppi == "paino")
+            {
+                activeBoost += ostettava.Voima;
+            }
+            else
+            {
+                passiveBoost += ostettava.Voima;
+            }
+            ostettava.LisaaArvoJaVoima();
+        }
+    }
+
+    public void Crazymode()
+    {
+        if (paivitystaajuus == 150)
+        {
+            paivitystaajuus = 10;
+        }
+        else
+        {
+            paivitystaajuus = 150;
+        }
+    }
+    public void PassiveIncome()
+    {
+        while(true)
+        {
+            Thread.Sleep(paivitystaajuus);
+            nykymaara += passiveBoost;
+            InvokeAsync(StateHasChanged);
+        }
+    }
+}
