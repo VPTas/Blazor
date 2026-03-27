@@ -7,11 +7,13 @@ on:
 
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       - uses: actions/checkout@v6
 
@@ -19,13 +21,14 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
+
       - name: Install .NET WebAssembly Tools
         run: dotnet workload install wasm-tools
 
-      - name: Publish
-        run: dotnet publish blazorSolution/THT203/THT203.csproj -c:Release -o:publish -p:GHPages=true
+      - name: Publish Blazor WASM
+        run: dotnet publish blazorSolution/THT203/THT203.csproj -c Release -o publish -p:BaseHref=/Blazor/
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
