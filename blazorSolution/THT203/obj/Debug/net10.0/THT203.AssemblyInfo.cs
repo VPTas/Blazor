@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("THT203")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1e01ba2f3cd7a9ef23c5dae7111b8b1439a6fe1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+287a2532e2f60ef071926c1c26e0bc9e5a358fb4")]
 [assembly: System.Reflection.AssemblyProductAttribute("THT203")]
 [assembly: System.Reflection.AssemblyTitleAttribute("THT203")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
