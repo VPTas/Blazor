@@ -3,6 +3,6 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)blazorwasmbrotliloader.build\1.0.3\build\BlazorWasmBrotliLoader.Build.targets" Condition="Exists('$(NuGetPackageRoot)blazorwasmbrotliloader.build\1.0.3\build\BlazorWasmBrotliLoader.Build.targets')" />
     <Import Project="$(NuGetPackageRoot)publishspaforgithubpages.build\3.0.3\build\PublishSPAforGitHubPages.Build.targets" Condition="Exists('$(NuGetPackageRoot)publishspaforgithubpages.build\3.0.3\build\PublishSPAforGitHubPages.Build.targets')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.0.2\buildTransitive\Microsoft.AspNetCore.App.Internal.Assets.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.0.2\buildTransitive\Microsoft.AspNetCore.App.Internal.Assets.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.0.5\buildTransitive\Microsoft.AspNetCore.App.Internal.Assets.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.app.internal.assets\10.0.5\buildTransitive\Microsoft.AspNetCore.App.Internal.Assets.targets')" />
   </ImportGroup>
 </Project>

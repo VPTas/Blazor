@@ -8,7 +8,7 @@
           "build/BlazorWasmBrotliLoader.Build.targets": {}
         }
       },
-      "Microsoft.AspNetCore.App.Internal.Assets/10.0.2": {
+      "Microsoft.AspNetCore.App.Internal.Assets/10.0.5": {
         "type": "package",
         "build": {
           "build/Microsoft.AspNetCore.App.Internal.Assets.props": {},
@@ -65,10 +65,10 @@
         "tools/BrotliSharpLib.dll"
       ]
     },
-    "Microsoft.AspNetCore.App.Internal.Assets/10.0.2": {
-      "sha512": "fMAqrUm+aspxRAsCJ6Hlgs96XSHwNIr9HBNt7wyBAzQkPlfE7w+0C4NzDoJnso5YZyDI0VcRtEXxG9odt3KiZA==",
+    "Microsoft.AspNetCore.App.Internal.Assets/10.0.5": {
+      "sha512": "Oxw9Ps1/nd6c/EMCAI13AeJFEqXezAvCEOshMjUWmL7LeGirHJNzytR2e/3jINYg0j2TmPvNUowGHf+gp8zDSQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.app.internal.assets/10.0.2",
+      "path": "microsoft.aspnetcore.app.internal.assets/10.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -84,7 +84,7 @@
         "build/Microsoft.AspNetCore.App.Internal.Assets.targets",
         "buildMultiTargeting/Microsoft.AspNetCore.App.Internal.Assets.targets",
         "buildTransitive/Microsoft.AspNetCore.App.Internal.Assets.targets",
-        "microsoft.aspnetcore.app.internal.assets.10.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512",
         "microsoft.aspnetcore.app.internal.assets.nuspec"
       ]
     },
@@ -138,29 +138,29 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.2",
+      "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.5",
       "Newtonsoft.Json >= 13.0.4",
       "PublishSPAforGitHubPages.Build >= 3.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Omistaja\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Doge\\.nuget\\packages\\": {},
+    "D:\\visualstudiosdk\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj",
+      "projectUniqueName": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj",
       "projectName": "THT203",
-      "projectPath": "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj",
-      "packagesPath": "C:\\Users\\Omistaja\\.nuget\\packages\\",
-      "outputPath": "D:\\blazor\\blazorSolution\\THT203\\obj\\",
+      "projectPath": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj",
+      "packagesPath": "C:\\Users\\Doge\\.nuget\\packages\\",
+      "outputPath": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\visualstudiosdk\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Omistaja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Doge\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -188,7 +188,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net10.0": {
@@ -197,7 +197,7 @@
           "Microsoft.AspNetCore.App.Internal.Assets": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[10.0.2, )",
+            "version": "[10.0.5, )",
             "autoReferenced": true
           },
           "Newtonsoft.Json": {
@@ -228,7 +228,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

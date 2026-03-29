@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "426iqPVk104=",
+  "dgSpecHash": "tt/Z+nUp8Ow=",
   "success": true,
-  "projectFilePath": "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj",
+  "projectFilePath": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Omistaja\\.nuget\\packages\\blazorwasmbrotliloader.build\\1.0.3\\blazorwasmbrotliloader.build.1.0.3.nupkg.sha512",
-    "C:\\Users\\Omistaja\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.2\\microsoft.aspnetcore.app.internal.assets.10.0.2.nupkg.sha512",
-    "C:\\Users\\Omistaja\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
-    "C:\\Users\\Omistaja\\.nuget\\packages\\publishspaforgithubpages.build\\3.0.3\\publishspaforgithubpages.build.3.0.3.nupkg.sha512"
+    "C:\\Users\\Doge\\.nuget\\packages\\blazorwasmbrotliloader.build\\1.0.3\\blazorwasmbrotliloader.build.1.0.3.nupkg.sha512",
+    "C:\\Users\\Doge\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.5\\microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512",
+    "C:\\Users\\Doge\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
+    "C:\\Users\\Doge\\.nuget\\packages\\publishspaforgithubpages.build\\3.0.3\\publishspaforgithubpages.build.3.0.3.nupkg.sha512"
   ],
   "logs": []
 }

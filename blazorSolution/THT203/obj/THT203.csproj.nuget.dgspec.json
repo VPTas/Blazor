@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj": {}
+    "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj": {}
   },
   "projects": {
-    "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj": {
+    "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj",
+        "projectUniqueName": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj",
         "projectName": "THT203",
-        "projectPath": "D:\\blazor\\blazorSolution\\THT203\\THT203.csproj",
-        "packagesPath": "C:\\Users\\Omistaja\\.nuget\\packages\\",
-        "outputPath": "D:\\blazor\\blazorSolution\\THT203\\obj\\",
+        "projectPath": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\THT203.csproj",
+        "packagesPath": "C:\\Users\\Doge\\.nuget\\packages\\",
+        "outputPath": "E:\\Koulu\\blazor\\blazorSolution\\THT203\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\visualstudiosdk\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Omistaja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Doge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -54,7 +54,7 @@
             "Microsoft.AspNetCore.App.Internal.Assets": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.2, )",
+              "version": "[10.0.5, )",
               "autoReferenced": true
             },
             "Newtonsoft.Json": {
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
