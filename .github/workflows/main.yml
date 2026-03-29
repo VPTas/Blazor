@@ -28,12 +28,12 @@ jobs:
       - name: Publish Blazor WASM
         run: dotnet publish blazorSolution/THT203/THT203.csproj -c Release -o publish -p:BaseHref=/Blazor/
 
+      - name: List publish output
+        run: |
+          echo "==== publish ===="
+          ls -R publish
+          echo "==== publish/wwwroot ===="
+          ls -R publish/wwwroot
+
       - name: Copy index.html to 404.html for SPA routing
         run: cp publish/wwwroot/index.html publish/wwwroot/404.html
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: publish/wwwroot
-          force_orphan: true
