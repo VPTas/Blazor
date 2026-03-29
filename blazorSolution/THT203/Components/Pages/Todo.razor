@@ -1,10 +1,9 @@
 ﻿@page "/Todo"
-@rendermode InteractiveServer
 
 <h3>To-Do lista: (@toDos.Count(Tod => !Tod.Valmis) on kesken)</h3>
 
 <ul>
-    @foreach(var todo in toDos)
+    @foreach (var todo in toDos)
     {
         <li>
             <input type="checkbox" @bind="todo.Valmis" />
@@ -24,8 +23,8 @@
     {
         if (!string.IsNullOrWhiteSpace(Uusi))
         {
-            toDos.Add(new ToDoItem {Nimi = Uusi});
+            toDos.Add(new ToDoItem { Nimi = Uusi });
             Uusi = string.Empty;
         }
     }
-}
+}}

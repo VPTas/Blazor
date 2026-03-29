@@ -1,12 +1,12 @@
-﻿@page "/"                    
-@rendermode InteractiveServer
+﻿@page "/"
+@implements IAsyncDisposable
 
 <h1>Pisteitä</h1>
 <p>
     <button class="btn-main-click" Color="ButtonColor.Danger" @onclick="Klikattu">Click me</button>
 </p>
 <div id="Naytto">
-    <p role="status" class="counter" >Current count: @Math.Round(nykymaara, 0)</p>
+    <p role="status" class="counter">Current count: @Math.Round(nykymaara, 0)</p>
 </div>
 
 <table class="ostettavat">
@@ -14,7 +14,7 @@
         <tr><th>Ostettavat:</th></tr>
     </thead>
     <tbody>
-        @foreach(Esine esine in Esineet)
+        @foreach (Esine esine in Esineet)
         {
             <tr>
                 <td>@esine.Nimi</td>
@@ -24,14 +24,14 @@
         }
     </tbody>
 </table>
-<button onclick="Crazymode">Älä paina jos näytönohjaimesi on sinulle tärkeä</button>
+<button @onclick="Crazymode">Älä paina jos näytönohjaimesi on sinulle tärkeä</button>
 
 @code {
 
     public List<Esine> Esineet = new()
     {
-        new Esine("Uusi hiiri", "paino", 10, 1),                
-        new Esine("Juoppolintu", "passive", 100, 0.003),        
+        new Esine("Uusi hiiri", "paino", 10, 1),
+        new Esine("Juoppolintu", "passive", 100, 0.003),
         new Esine("Rotta", "passive", 500, 0.03),
         new Esine("Rannetuki", "paino", 550, 10),
         new Esine("Naapurin kengät", "passive", 800, 2)
@@ -41,18 +41,21 @@
     private double activeBoost = 1;
     private double passiveBoost = 0;
     private int paivitystaajuus = 150;
+    private CancellationTokenSource? cancellationTokenSource;
+    private Task? passiveIncomeTask;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Thread thread = new Thread(PassiveIncome);
-        thread.IsBackground = true;
-        thread.Start(); 
+        cancellationTokenSource = new CancellationTokenSource();
+        passiveIncomeTask = PassiveIncomeAsync(cancellationTokenSource.Token);
     }
+
     private void Klikattu()
     {
         nykymaara += activeBoost;
     }
+
     private void EsineOstettu(EventArgs args, Esine ostettava)
     {
         if (Math.Round(nykymaara, 0) - Math.Round(ostettava.Arvo, 0) >= 0)
@@ -67,6 +70,7 @@
             {
                 passiveBoost += ostettava.Voima;
             }
+
             ostettava.LisaaArvoJaVoima();
         }
     }
@@ -82,13 +86,37 @@
             paivitystaajuus = 150;
         }
     }
-    public void PassiveIncome()
+
+    public async ValueTask DisposeAsync()
     {
-        while(true)
+        if (cancellationTokenSource is null)
         {
-            Thread.Sleep(paivitystaajuus);
+            return;
+        }
+
+        cancellationTokenSource.Cancel();
+
+        if (passiveIncomeTask is not null)
+        {
+            try
+            {
+                await passiveIncomeTask;
+            }
+            catch (OperationCanceledException)
+            {
+            }
+        }
+
+        cancellationTokenSource.Dispose();
+    }
+
+    private async Task PassiveIncomeAsync(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            await Task.Delay(paivitystaajuus, cancellationToken);
             nykymaara += passiveBoost;
-            InvokeAsync(StateHasChanged);
+            await InvokeAsync(StateHasChanged);
         }
     }
 }
