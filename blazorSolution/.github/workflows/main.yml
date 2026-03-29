@@ -1,3 +1,6 @@
+-file: .github\workflows\main.yml
++-+-+-+-+-+-+-
+```
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -5,3 +8,14 @@
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./publish/wwwroot
           force_orphan: true
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Add base href for GitHub Pages deployment"
+          git push origin main
+          exit 0 # Continue the workflow even if there are no changes to commit
+
+
+```
